@@ -1,0 +1,374 @@
+{
+  "name": "Module eligiblity",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        752,
+        -112
+      ],
+      "id": "c6aae851-2478-4f49-9898-1499e11fddbf",
+      "name": "Congratulations! you are eligible for the placement drive"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        768,
+        64
+      ],
+      "id": "741aa2d8-435e-46a3-b0ad-5d730832a077",
+      "name": "you are not eligible. Please focus on modules with lower marks"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "4a356957-6f90-4fae-af82-48a4abb48b70",
+              "leftValue": "={{ $json.average }}",
+              "rightValue": 70,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        512,
+        16
+      ],
+      "id": "a7fb6b8b-49be-4fce-b406-dc84f689d46e",
+      "name": "DA module eligiblity"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        800,
+        384
+      ],
+      "id": "f3719280-72a0-4b09-a0ba-cbd8df09876b",
+      "name": "you are not eligible please focus on module"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "4a356957-6f90-4fae-af82-48a4abb48b70",
+              "leftValue": "={{ $json.average }}",
+              "rightValue": 70,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        560,
+        224
+      ],
+      "id": "d1d3e6ce-2b8b-470d-930d-9e67bc4e5d16",
+      "name": "Ds module eligiblity"
+    },
+    {
+      "parameters": {
+        "language": "pythonNative",
+        "pythonCode": "return{\"ML\":_items[0][\"json\"]['Enter marks for ML'],\"ANN\":_items[0][\"json\"]['Enter marks for ANN'],\"CNN\":_items[0][\"json\"]['Enter marks for CNN'],\"NLP\":_items[0][\"json\"]['Enter marks for NLP'],\"average\":(_items[0][\"json\"]['Enter marks for ML']+_items[0][\"json\"]['Enter marks for ANN']+_items[0][\"json\"]['Enter marks for CNN']+_items[0][\"json\"]['Enter marks for NLP'])/5}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        256,
+        144
+      ],
+      "id": "279f92bd-6cf8-4989-9b19-c626f1f55e60",
+      "name": "avg marks for DS"
+    },
+    {
+      "parameters": {
+        "language": "pythonNative",
+        "pythonCode": "return{\"python\":_items[0][\"json\"][' Enter your marks for python'],\"eda\":_items[0][\"json\"]['Enter your marks for EDA'],\"sql\":_items[0][\"json\"]['Enter your marks for SQL'],\"powerBI\":_items[0][\"json\"]['Enter your marks for PowerBI'],\"advsts\":_items[0][\"json\"]['Enter your marks for Advance Statistics'],\"average\":(_items[0][\"json\"][' Enter your marks for python']+_items[0][\"json\"]['Enter your marks for EDA']+_items[0][\"json\"]['Enter your marks for SQL']+_items[0][\"json\"]['Enter your marks for PowerBI']+_items[0][\"json\"]['Enter your marks for Advance Statistics'])/5}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        256,
+        -96
+      ],
+      "id": "82f6ea8d-97e3-4c93-ba09-229ceca5ebd4",
+      "name": "avg marks for DA"
+    },
+    {
+      "parameters": {
+        "formTitle": "Montly assessment marks calculation",
+        "formDescription": "getting module wise marks ",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": " Enter your marks for python",
+              "fieldType": "number",
+              "placeholder": "DA only",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Enter your marks for EDA",
+              "fieldType": "number",
+              "placeholder": "DA only",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Enter your marks for SQL",
+              "fieldType": "number",
+              "placeholder": "DA only",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Enter your marks for PowerBI",
+              "fieldType": "number",
+              "placeholder": "DA only",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Enter your marks for Advance Statistics",
+              "fieldType": "number",
+              "placeholder": "DA only",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Enter marks for ML",
+              "fieldType": "number",
+              "placeholder": "DS only",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Enter marks for ANN",
+              "fieldType": "number",
+              "placeholder": "DS only",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Enter marks for CNN",
+              "fieldType": "number",
+              "placeholder": "DS only",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Enter marks for NLP",
+              "fieldType": "number",
+              "placeholder": "DS only",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "program",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "DA"
+                  },
+                  {
+                    "option": "DS"
+                  }
+                ]
+              },
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.3,
+      "position": [
+        -352,
+        48
+      ],
+      "id": "242e48f8-994b-413b-a870-8bba6ce8ae6b",
+      "name": "Enter your marks",
+      "webhookId": "0a516117-d8eb-4f59-b166-19a638336f47"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        912,
+        224
+      ],
+      "id": "283f8232-c1b2-45b5-94cb-2119bddbf66b",
+      "name": "Congratulations! you are eligible for the placement drive1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "764ded20-6467-4120-b671-158fdbda985f",
+              "leftValue": "={{ $json.program }}",
+              "rightValue": "DA",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -48,
+        48
+      ],
+      "id": "6a193efe-e995-4c49-9315-5f35a1f2bc54",
+      "name": "If"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Congratulations! you are eligible for the placement drive": {
+      "main": [
+        []
+      ]
+    },
+    "DA module eligiblity": {
+      "main": [
+        [
+          {
+            "node": "Congratulations! you are eligible for the placement drive",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "you are not eligible. Please focus on modules with lower marks",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ds module eligiblity": {
+      "main": [
+        [
+          {
+            "node": "Congratulations! you are eligible for the placement drive1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "you are not eligible please focus on module",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "avg marks for DS": {
+      "main": [
+        [
+          {
+            "node": "Ds module eligiblity",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "avg marks for DA": {
+      "main": [
+        [
+          {
+            "node": "DA module eligiblity",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enter your marks": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "avg marks for DA",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "avg marks for DS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "e71fe8e3-f40d-4c14-9564-e037f9a1118c",
+  "meta": {
+    "instanceId": "f4a55ffafc712d5a95f7ceb9bdb39a6c7a692c05e4f0a25cbc8bcf3631af051b"
+  },
+  "id": "KcSEFih94TPWcFaF",
+  "tags": []
+}
