@@ -1,0 +1,389 @@
+{
+  "name": "course enquiry",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "documentId": {
+          "__rl": true,
+          "value": "15GbMswmYm_M_25tjaPysNjey-KiMMkFmXwTTFCZ2Mvk",
+          "mode": "list",
+          "cachedResultName": "student enquiry form",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/15GbMswmYm_M_25tjaPysNjey-KiMMkFmXwTTFCZ2Mvk/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/15GbMswmYm_M_25tjaPysNjey-KiMMkFmXwTTFCZ2Mvk/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "04fbf78d-9855-467a-b179-75b20b715dee",
+      "name": "Google Sheets Trigger",
+      "credentials": {
+        "googleSheetsTriggerOAuth2Api": {
+          "id": "N5LzMoIaNR7moCTk",
+          "name": "Google Sheets Trigger account 4"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.Email }}",
+        "subject": "enquiry form",
+        "emailType": "text",
+        "message": "=hi  {{ $json.Name }}   thanks for choosing innomatics\nplease fill the registration form:https://forms.gle/jG93DE7dPPUC89mg9\n\nthank you\nrashmitha\ninnomatics",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "59f3de61-9130-417a-98e1-9412e6f0db87",
+      "name": "Send a message",
+      "webhookId": "abca2c08-d69b-414f-8ea3-826021341092",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "4KChniCjM9dp48zS",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "documentId": {
+          "__rl": true,
+          "value": "1YMuijoujcIKmwOBnpIIE0LhdpnGFfig4jZCmko6Kp6Y",
+          "mode": "list",
+          "cachedResultName": "student form",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1YMuijoujcIKmwOBnpIIE0LhdpnGFfig4jZCmko6Kp6Y/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 61879529,
+          "mode": "list",
+          "cachedResultName": "Form Responses 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1YMuijoujcIKmwOBnpIIE0LhdpnGFfig4jZCmko6Kp6Y/edit#gid=61879529"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTrigger",
+      "typeVersion": 1,
+      "position": [
+        -32,
+        224
+      ],
+      "id": "6746156c-31be-47d7-894e-6915d0d5651f",
+      "name": "Google Sheets Trigger1",
+      "credentials": {
+        "googleSheetsTriggerOAuth2Api": {
+          "id": "N5LzMoIaNR7moCTk",
+          "name": "Google Sheets Trigger account 4"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.Course }}",
+                    "rightValue": "Agentic AI",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "769b1e56-9202-48c7-be5a-8c845e4d3101"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "AAI"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "1c722406-2bd1-4b71-add6-08f64c2220e3",
+                    "leftValue": "={{ $json.Course }}",
+                    "rightValue": "Data Science",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "DS"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "8d0a5ed1-fc14-448a-8658-e0a184c3dac5",
+                    "leftValue": "={{ $json.Course }}",
+                    "rightValue": "full stack development",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "FSD"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "83e95431-c674-4f77-8a66-be81e1f13986",
+                    "leftValue": "={{ $json.Course }}",
+                    "rightValue": "Data Anlytics",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "DA"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        176,
+        224
+      ],
+      "id": "292f2639-9c93-48df-995d-722bd8f52158",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json['Email Address'] }}",
+        "subject": "course details",
+        "emailType": "text",
+        "message": "=Hi {{ $json.Name }}     \n    Thanks for choosing innomatics.Below are the course details\n\ncourse starting day:10-12-2025\ncourse Duration: 8 months\n\ncourse curriculum:\n1) N8N\n2) GIT AND GITHUB\n3) LANGCHAIN\n4)CREW AI\n5) LANGSMITH\n6)LANGGRAPH\n7)LANGSERVE\n8)LANGFUSE\n\nEXT:PROMP ENGINERRING\n\nThank you \nRashmitha\ninnomatics\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        512,
+        -64
+      ],
+      "id": "32abafcc-f374-44e8-b4ca-d33a7238cbd9",
+      "name": "Send a message1",
+      "webhookId": "c1ebd424-5cb2-4b91-a2f1-f8f67492bb27",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "4KChniCjM9dp48zS",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json['Email Address'] }}",
+        "subject": "course details",
+        "emailType": "text",
+        "message": "=Hi {{ $json.Name }}     \n    Thanks for choosing innomatics.Below are the course details\n\ncourse starting day:10-12-2025\ncourse Duration: 8 months\n\ncourse curriculum:\n1) Python\n2) EDA\n3) SQL\n4)POWER BI\n5) ML\n6)DL\n7)AGENTIC AI\n8)NLP\n\nEXT:PROMP ENGINERRING\n\nThank you \nRashmitha\ninnomatics\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        528,
+        112
+      ],
+      "id": "431db1ff-8354-4f13-895e-41bbb451b819",
+      "name": "Send a message2",
+      "webhookId": "c1ebd424-5cb2-4b91-a2f1-f8f67492bb27",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "4KChniCjM9dp48zS",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json['Email Address'] }}",
+        "subject": "course details",
+        "emailType": "text",
+        "message": "=Hi {{ $json.Name }}     \n    Thanks for choosing innomatics.Below are the course details\n\ncourse starting day:10-12-2025\ncourse Duration: 8 months\n\ncourse curriculum:\n1)HTML\n2)CSS\n3)JAVA SCRIPT\n4)REACT JS\n5) SQL\n6)Python\n\nEXT:PROMP ENGINERRING\n\nThank you \nRashmitha\ninnomatics\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        544,
+        272
+      ],
+      "id": "eb563894-f2f9-41fb-bde4-9316a4242bda",
+      "name": "Send a message3",
+      "webhookId": "c1ebd424-5cb2-4b91-a2f1-f8f67492bb27",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "4KChniCjM9dp48zS",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json['Email Address'] }}",
+        "subject": "course details",
+        "emailType": "text",
+        "message": "=Hi {{ $json.Name }}     \n    Thanks for choosing innomatics.Below are the course details\n\ncourse starting day:10-12-2025\ncourse Duration: 8 months\n\ncourse curriculum:\n1) Python\n2) EDA\n3) POWER BI\n4)SQL\n7)WEB SCRAPPING\n\nEXT:PROMP ENGINERRING\n\nThank you \nRashmitha\ninnomatics\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        544,
+        416
+      ],
+      "id": "1090d5fe-97c7-416d-8523-b4acd3b261ad",
+      "name": "Send a message4",
+      "webhookId": "c1ebd424-5cb2-4b91-a2f1-f8f67492bb27",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "4KChniCjM9dp48zS",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Google Sheets Trigger": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets Trigger1": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Send a message1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send a message2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send a message3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send a message4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "2b355e0a-56ff-439a-8c6b-049d134c485d",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "f4a55ffafc712d5a95f7ceb9bdb39a6c7a692c05e4f0a25cbc8bcf3631af051b"
+  },
+  "id": "iGOe1CpumqsQFZKY",
+  "tags": []
+}
