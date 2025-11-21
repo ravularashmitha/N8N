@@ -1,0 +1,86 @@
+import streamlit as st
+import requests
+
+st.title("Translator (English ➝ Selected Language)")
+
+LANGUAGES = [
+    "English",
+    "Hindi",
+    "Telugu",
+    "Tamil",
+    "Kannada",
+    "Malayalam",
+    "Marathi",
+    "Gujarati",
+    "Bengali",
+    "Punjabi",
+    "Urdu",
+    "Spanish",
+    "French",
+    "German",
+    "Japanese",
+    "Korean",
+    "Chinese",
+]
+
+DEFAULT_TARGET = "English"
+
+if "target_lang" not in st.session_state:
+    st.session_state.target_lang = DEFAULT_TARGET
+
+if "input_text" not in st.session_state:
+    st.session_state.input_text = ""
+
+
+def reset_state():
+    st.session_state.target_lang = DEFAULT_TARGET
+
+
+text = st.text_area(
+    "Enter text in English",
+    key="input_text",
+    placeholder="Type your English text here..."
+)
+
+target_lang = st.selectbox(
+    "Translate to:",
+    options=LANGUAGES,
+    index=LANGUAGES.index(st.session_state.target_lang),
+    key="target_lang"
+)
+
+col1, col2 = st.columns(2)
+with col1:
+    translate = st.button("Translate")
+with col2:
+    st.button("Reset to English", on_click=reset_state)
+
+
+if translate:
+    if not text:
+        st.warning("Please enter some English text to translate.")
+    else:
+        try:
+            payload = {
+                "out": text,
+                "target_language": target_lang
+            }
+
+            response = requests.post(
+                url="https://ravularashmitha07.app.n8n.cloud/webhook-test/54722fbe-f926-413b-bb8a-1539fc10f771",
+                json=payload,
+                timeout=30
+            )
+
+            if response.status_code == 200:
+                data = response.json()
+                output = data[0]["output"] if isinstance(data, list) else data["output"]
+
+                st.markdown(f"### {target_lang} Translation:")
+                st.write(output)
+
+            else:
+                st.error(f"Server error: {response.status_code} - {response.text}")
+
+        except Exception as e:
+            st.error(f"Request failed: {e}")
