@@ -1,0 +1,95 @@
+{
+  "name": "translator",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "54722fbe-f926-413b-bb8a-1539fc10f771",
+        "responseMode": "lastNode",
+        "responseData": "allEntries",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "05a16e39-75ef-453e-9759-fd174454d7d6",
+      "name": "Webhook",
+      "webhookId": "54722fbe-f926-413b-bb8a-1539fc10f771"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Translate this text into {{ $json.body.target_language }}:\n{{ $json.body.out }}\n",
+        "options": {
+          "systemMessage": "=You are a translation assistant.\n\nThe incoming JSON contains:\n- \"out\": English text that needs to be translated.\n- \"target_language\": the language to translate into (example: \"Hindi\", \"Telugu\", \"French\").\n\nYour task:\nTranslate the text in {{ $json.body.out }} into the language specified in {{ $json.body.target_language }}.\n\nResponse rules:\n- Respond ONLY with the translated text.\n- Do NOT include the English text.\n- Do NOT add explanations, notes, or extra wording.\n- Do NOT include labels like “Hindi Translation:”.\n- Output only the pure translated sentence in the target language.\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        208,
+        0
+      ],
+      "id": "4cfb7d0c-1f49-4588-a646-f1780abd646e",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        80,
+        208
+      ],
+      "id": "e3de3edb-21ff-4c19-901d-a80e1880283d",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "SRtzhxjhIXVnE7OU",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "11b3686b-f811-426c-827e-f7a6befdc1d8",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "f4a55ffafc712d5a95f7ceb9bdb39a6c7a692c05e4f0a25cbc8bcf3631af051b"
+  },
+  "id": "YuWIMiM7kSHJ5RBV",
+  "tags": []
+}
