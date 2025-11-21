@@ -5,3 +5,5 @@ certificate eligibility reference:https://drive.google.com/file/d/10Wk_QOm5thXK6
 module eligibility:https://drive.google.com/file/d/1GNo1QUCVRDq7nhow8y7bSfCZFaXw4OLd/view?usp=sharing
 
 smart query routing:https://drive.google.com/file/d/1qQm8oqnU6AJKmI8yx58Wc9E3lHogg_t6/view?usp=sharing
+
+mutlilingual translator:https://drive.google.com/file/d/1k5pVDZaTqcYQHBgYZ1ioDc_mBGvx6siH/view?usp=sharing
